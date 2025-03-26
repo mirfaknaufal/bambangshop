@@ -86,4 +86,10 @@ This is the place for you to write reflections:
 
 #### Reflection Publisher-2
 
+1. In traditional MVC, the Model handles both business logic and data storage, but separating Service and Repository improves scalability, maintainability, and testability. The Repository abstracts database operations, while the Service manages business logic, ensuring a cleaner, reusable, and modular design. This separation enhances flexibility, allows easier testing, and supports scaling, making modern architectures more efficient.
+
+2. If we only use the Model without separating Service and Repository, interactions between Program, Subscriber, and Notification would become tightly coupled, increasing complexity and reducing maintainability. Each model would handle data storage, business logic, and cross-model communication, leading to duplicate logic, harder testing, and reduced modularity. 
+
+3. Postman is a powerful API testing tool that simplifies development by allowing users to send GET, POST, PUT, DELETE, and other HTTP requests without writing client-side code.  Postman’s Collections feature is extremely useful for organizing and managing API requests efficiently. Instead of manually entering request details each time, a Collection groups related API endpoints, making it easier to test different functionalities of an application.
+
 #### Reflection Publisher-3
