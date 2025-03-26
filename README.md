@@ -78,6 +78,12 @@ This is the place for you to write reflections:
 
 #### Reflection Publisher-1
 
+1. In the Observer pattern, an interface (or trait in Rust) is typically used to define a contract for all subscribers, allowing flexibility for different implementations. In *BambangShop*, the *Subscriber* struct only holds data (`url` and `name`) without any behavior, making it more of a data model rather than an entity requiring polymorphism. Since the *SubscriberRepository* directly manages subscribers without any variation in behavior, a trait is unnecessary unless different types of subscribers with distinct notification mechanisms (e.g., HTTP, WebSocket, database logging) are required in the future. If all subscribers behave the same way, the current struct-based approach is sufficient; however, if flexibility is needed, implementing a `Subscriber` trait with different subscriber types (e.g., `HttpSubscriber`, `WebSocketSubscriber`) would be beneficial.
+
+2. Using `DashMap` is necessary in this case because both `id` in `Program` and `url` in `Subscriber` are intended to be unique. A `Vec` would require iterating through all elements to check for uniqueness before inserting a new entry, which is inefficient, especially as the data grows.
+
+3. Using the Singleton pattern alone is not sufficient for ensuring thread safety in Rust, as it only guarantees a single instance but does not handle concurrent access. Since multiple threads may read and write to `SUBSCRIBERS`, using a standard `HashMap` within a Singleton would require manual locking with `Mutex` or `RwLock`, which can introduce performance bottlenecks. In contrast, DashMap is specifically designed for efficient multi-threaded access, providing fine-grained locking and minimizing contention. From a design pattern perspective, DashMap functions as an enhanced Singleton that integrates thread safety, making it both a Singleton and a thread-safe shared resource, ensuring optimal performance and safety in concurrent environments.
+
 #### Reflection Publisher-2
 
 #### Reflection Publisher-3
